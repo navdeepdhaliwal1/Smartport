@@ -17,8 +17,7 @@ SmartPort is an AI-enhanced port scanning and service enumeration tool designed 
 
 ## 📸 Demo Screenshot
 
-> *(Add a screenshot of the web dashboard here)*  
-`![SmartPort Dashboard](screenshots/dashboard.png)`
+
 ![Screenshot 2025-05-25 102941](https://github.com/user-attachments/assets/7d6ad818-dbea-4da0-b1f5-6af1e86b5a20)
 > ![Screenshot 2025-05-25 102953](https://github.com/user-attachments/assets/bf48040e-25ea-44d2-97cd-0da25d4f0322)
 
