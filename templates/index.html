@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Vulnerability Scanner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body {
+          background: #2f2f2f; /* Dark Gray Background */
+          color: white; /* Light text for dark background */
+          font-family: 'Segoe UI', sans-serif;
+        }
+        .scanner-box {
+          background: #FFFAF0; /* Peach Color for Scanner Box */
+          border-radius: 12px;
+          padding: 30px;
+          box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .btn-scan {
+          background-color: #FF7F50; /* Lighter Peach Color */
+          color: white;
+          border-radius: 8px;
+        }
+        .btn-scan:hover {
+          background-color: #FF6347; /* Darker Peach on Hover */
+        }
+        h2, h3 {
+          color: #333333; /* Darker Text for Headings */
+        }
+        .badge {
+          font-size: 0.95rem;
+        }
+        input.form-control, select.form-select {
+          background-color: #FFFAF0; /* Peach Color for Input Fields */
+          color: #333; /* Dark Text for Contrast */
+          border: 1px solid #FFD700; /* Golden Border */
+        }
+        input.form-control:focus, select.form-select:focus {
+          border-color: #FF6347; /* Peach Border on Focus */
+        }
+        #radarLoader {
+          display: none;
+        }
+        .download-btn {
+          background-color: #FF7F50; /* Lighter Peach Color for Download Button */
+          color: white;
+          border-radius: 8px;
+          text-decoration: none;
+          padding: 10px 15px;
+        }
+        .download-btn:hover {
+          background-color: #FF6347; /* Darker Peach on Hover */
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    <div class="scanner-box mx-auto" style="max-width: 650px;">
+        <!-- Logo/Icon -->
+        <div class="text-center mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Scanner Logo" style="height: 60px;" />
+        </div>
+        <h2 class="text-center mb-4"> AI-Powered Vulnerability Scanner</h2>
+
+        <!-- Radar Animation -->
+        <div id="radarLoader" class="text-center mt-3 mb-3">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" stroke="#0d6efd" stroke-width="2" fill="none"/>
+                <path d="M50 50 L95 50 A45 45 0 1 1 50 5 Z" fill="rgba(13,110,253,0.3)">
+                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2s" repeatCount="indefinite"/>
+                </path>
+            </svg>
+            <p class="mt-2 text-light">Scanning in progress...</p>
+        </div>
+
+        <!-- Scan Form -->
+        <form method="POST" onsubmit="showLoading()">
+            <div class="mb-3">
+                <label for="target" class="form-label">🔗 Target IP or Domain</label>
+                <input type="text" class="form-control" id="target" name="target" placeholder="e.g., 192.168.0.1 or example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="scan_type" class="form-label">🛡️ Scan Type</label>
+                <select class="form-select" id="scan_type" name="scan_type">
+                    <option value="top">Top 50 Ports (Fast)</option>
+                    <option value="all">All Ports (Slower)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-scan w-100"> Start Scan</button>
+        </form>
+    </div>
+
+    {% if results %}
+    <div class="mt-5 scanner-box mx-auto" style="max-width: 650px;">
+        <h3>📋 Scan Results:</h3>
+        <table class="table table-striped table-hover mt-3">
+            <thead class="table-dark">
+            <tr>
+                <th>Host</th>
+                <th>Protocol</th>
+                <th>Port</th>
+                <th>State</th>
+                <th>Risk Level</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in results %}
+            <tr>
+                <td>{{ item.host }}</td>
+                <td>{{ item.protocol }}</td>
+                <td>{{ item.port }}</td>
+                <td>{{ item.state }}</td>
+                <td>
+              <span class="badge
+                {% if item.risk == 'Low' %} bg-success
+                {% elif item.risk == 'Medium' %} bg-warning
+                {% else %} bg-danger
+                {% endif %}">
+                {{ item.risk }}
+              </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showLoading() {
+      document.getElementById("radarLoader").style.display = "block";
+    }
+</script>
+</body>
+</html>

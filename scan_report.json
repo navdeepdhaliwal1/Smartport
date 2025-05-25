@@ -1,0 +1,40 @@
+[
+    {
+        "host": "142.250.182.174",
+        "protocol": "tcp",
+        "port": 23,
+        "state": "closed"
+    },
+    {
+        "host": "142.250.182.174",
+        "protocol": "tcp",
+        "port": 25,
+        "state": "closed"
+    },
+    {
+        "host": "142.250.182.174",
+        "protocol": "tcp",
+        "port": 53,
+        "state": "closed"
+    },
+    {
+        "host": "142.250.182.174",
+        "protocol": "tcp",
+        "port": 80,
+        "state": "open",
+        "risk": "Medium"
+    },
+    {
+        "host": "142.250.182.174",
+        "protocol": "tcp",
+        "port": 443,
+        "state": "open",
+        "risk": "Low"
+    },
+    {
+        "host": "142.250.182.174",
+        "protocol": "tcp",
+        "port": 445,
+        "state": "closed"
+    }
+]

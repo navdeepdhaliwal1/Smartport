@@ -1,0 +1,7 @@
+host,protocol,port,state,risk
+142.250.194.142,tcp,23,closed,
+142.250.194.142,tcp,25,closed,
+142.250.194.142,tcp,53,closed,
+142.250.194.142,tcp,80,open,Medium
+142.250.194.142,tcp,443,open,Low
+142.250.194.142,tcp,445,closed,
